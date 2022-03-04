@@ -69,6 +69,15 @@ samples should be structured as such unless their is a compelling reason not to.
  
   # [END product_example]
  {{< /tab >}}
+ {{< tab header="Node.js" >}}
+  // [START product_example]
+  const resource = require('@google-cloud/example');
+ 
+  const exampleSnippet = () => {
+      // Snippet Content ...
+  }
+  // [END product_example]
+ {{< /tab >}}
 {{< /tabpane >}}
 
 ### Sample description
@@ -94,7 +103,7 @@ file. For example, project specific information (such as `projectId`) or a
 `filePath` for an external file is acceptable, while an argument for the type of
 a file or a specific action is not.
  
-Any declared function arguments should iqnclude a no-arg, main method with
+Any declared function arguments should include a no-arg, main method with
 examples for how the user can initialize the method arguments and call the
 entrypoint for the snippet. If the values for these variables need to be
 replaced by the user, be explicit that they are example values only.
@@ -109,14 +118,14 @@ attributes to the console.
         // TODO(developer): Replace these variables before running the sample.
         String projectId = "my-project-id";
         String filePath = "path/to/image.png";
-        inspectImageFile(projectId, filePath);
+        exampleSnippet(projectId, filePath);
     }
 
     // This is an example snippet for showing best practices.
     public static void exampleSnippet(String projectId, String filePath) {
         // Snippet content ...
     }
-{{< /tab >}}
+  {{< /tab >}}
 {{< /tabpane >}}
 
 ### Arrange, Act, Assert
@@ -164,6 +173,29 @@ more approachable to beginners:
        System.out.println("Display name : " + infoTypeDescription.getDisplayName());
      }
    }
+ {{< /tab >}}
+  {{< tab header="Node.js" >}}
+    // Imports the Google Cloud Data Loss Prevention library
+    const DLP = require('@google-cloud/dlp');
+
+    // Instantiates a reusable client object
+    const dlp = new DLP.DlpServiceClient();
+
+    // Lists the types of sensitive information the DLP API supports.
+    async function listInfoTypes() {
+      // Create and send the API request.
+      const [response] = await dlp.listInfoTypes({
+        languageCode: languageCode,
+        filter: filter,
+      });
+
+      // Parse the response and process the results.
+      const infoTypes = response.infoTypes;
+      console.log('Info types:');
+      infoTypes.forEach(infoType => {
+        console.log(`\t${infoType.name} (${infoType.displayName})`);
+      });
+    }
  {{< /tab >}}
 {{< /tabpane >}}
 
@@ -234,6 +266,17 @@ ensure that it works.
         // Snippet content ...
     }
   {{< /tab >}}
+  {{< tab header="Node.js" >}}
+    const exampleSnippet(projectId, filePath) {
+        const result = `${projectId}/${filePath}`;
+
+        // Do this...
+        console.log('Result:', result);
+
+        // ...NOT this!
+        return result;
+    }
+  {{< /tab >}}
 {{< /tabpane >}}
 
 
@@ -271,6 +314,13 @@ requests or if they are thread-safe).
      // make a request with the client
    }
 {{< /tab >}}
+  {{< tab header="Node.js" >}}
+    // Imports the Google Cloud Data Loss Prevention library
+    const DLP = require('@google-cloud/dlp');
+
+    // Instantiates a reusable client object
+    const dlp = new DLP.DlpServiceClient();
+  {{< /tab >}}
 {{< /tabpane >}}
 
 ### Cyclomatic Complexity
@@ -293,14 +343,29 @@ sample) it is acceptable to either log or leave a comment explaining what the
 developer should do.
 
 {{< tabpane langEqualsHeader=true >}}
- {{< tab header="Java" >}}
+  {{< tab header="Java" >}}
     // Follow the Google Java style guide and catch the most specific type of Exception, instead of a more general one.
     try {
       // Do something
     } catch (IllegalArgumentException ok) {
       // IllegalArgumentException's are thrown when an invalid argument has been passed to a function. Ok to ignore.
     }
-{{< /tab >}}
+  {{< /tab >}}
+  {{< tab header="Node.js" >}}
+    // Unhandled exceptions will cause Node.js to crash. Print exception
+    // messages via console.error(), and handle any non-fatal exceptions.
+    try {
+      // Do something
+    } catch (e) {
+      // Log the error to stdout
+      console.error('Error:', e.message);
+
+      // Reraise any fatal exceptions
+      if (/* exception is fatal */) {
+        throw e
+      }
+    }
+  {{< /tab >}}
 {{< /tabpane >}}
 
 ### Linting
