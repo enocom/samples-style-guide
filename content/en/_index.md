@@ -94,6 +94,14 @@ the sample work:
    * See https://cloud.google.com/compute/docs/quickstart-client-libraries before running the code snippet.
    */
  {{< /tab >}}
+ {{< tab header="Node.js" >}}
+   /**
+   * Moves a persistent disk from one zone to another.
+   *
+   * See https://cloud.google.com/compute/docs/quickstart-client-libraries before running the code snippet.
+   */
+   const movePersistentDisk = (...) => { ... }
+ {{< /tab >}}
 {{< /tabpane >}}
 
 ### Method Structure
@@ -113,7 +121,7 @@ to interact with a returned object programmatically by printing some example
 attributes to the console.
 
 {{< tabpane langEqualsHeader=true >}}
- {{< tab header="Java" >}}
+  {{< tab header="Java" >}}
     public static void main(String[] args) {
         // TODO(developer): Replace these variables before running the sample.
         String projectId = "my-project-id";
@@ -125,6 +133,24 @@ attributes to the console.
     public static void exampleSnippet(String projectId, String filePath) {
         // Snippet content ...
     }
+  {{< /tab >}}
+  {{< tab header="Node.js" >}}
+    // Required values are passed as arguments to the main() function.
+    // Example declarations are included (but commented out) in the snippet.
+    function main(projectId, filePath) {
+      // [START example_snippet]
+      // TODO(developer): uncomment these variables and replace their values.
+      // const projectId = 'my-project';
+      // const filepath = 'path/to/image.png';
+      function exampleSnippet() {
+        // Snippet content...
+      }
+      // [END example_snippet]
+      exampleSnippet()
+    }
+
+    // Run the main function with command-line arguments
+    main(...process.argv.slice(2));
   {{< /tab >}}
 {{< /tabpane >}}
 
@@ -183,12 +209,25 @@ more approachable to beginners:
 
     // Lists the types of sensitive information the DLP API supports.
     async function listInfoTypes() {
-      // Create and send the API request.
+      // ---------------- ARRANGE ----------------
+      // Only return infoTypes supported by certain parts of the API.
+      // Supported filters are:
+      //   "supported_by=INSPECT"
+      //   "supported_by=RISK_ANALYSIS"
+      const filter = 'supported_by=INSPECT';
+
+      // BCP-47 language code for localized infoType friendly names.
+      // Defaults to "en_US"
+      languageCode = 'en-us';
+
+      // ------------------ ACT ------------------
+      // Perform the API request.
       const [response] = await dlp.listInfoTypes({
-        languageCode: languageCode,
-        filter: filter,
+        languageCode,
+        filter
       });
 
+      // ----------------- ASSERT -----------------
       // Parse the response and process the results.
       const infoTypes = response.infoTypes;
       console.log('Info types:');
@@ -233,6 +272,18 @@ possible, provide a link to documentation that enumartes the options.
         exampleSnippet(projectId, filePath);
     }
   {{< /tab >}}
+  {{< tab header="Node.js" >}}
+    function main(arg1, arg2, ...) {
+      // const arg1 = ...
+      // const arg2 = ...
+      function exampleSnippet() {
+        // Declare snippet WITHIN the main() function
+        // Snippet content ...
+      }
+    }
+    // Run main() with command-line arguments
+    main(...process.argv.slice(2));
+  {{< /tab >}}
 {{< /tabpane >}}
 
 ### Minimal arguments
@@ -248,6 +299,19 @@ a file or a specific action is not.
     // This is an example snippet for showing best practices.
     public static void exampleSnippet(String projectId, String filePath) {
         // Snippet content ...
+    }
+  {{< /tab >}}
+  {{< tab header="Node.js" >}}
+    function main(requiredArg) {
+      // This argument is required, and should be added to main()
+      // const requiredArg = '...'
+
+      // This argument is optional; DO NOT add it to main()
+      // const optionalArg = '...'
+
+      function exampleSnippet() {
+        // Snippet content...
+      }
     }
   {{< /tab >}}
 {{< /tabpane >}}
@@ -267,7 +331,7 @@ ensure that it works.
     }
   {{< /tab >}}
   {{< tab header="Node.js" >}}
-    const exampleSnippet(projectId, filePath) {
+    function exampleSnippet(projectId, filePath) {
         const result = `${projectId}/${filePath}`;
 
         // Do this...
@@ -288,11 +352,20 @@ If the code snippet is platform specific, explicitly show how to use that
 platform's credentials.
  
 {{< tabpane langEqualsHeader=true >}}
- {{< tab header="Java" >}}
+  {{< tab header="Java" >}}
    // Most clients use ADC by default. However, if your application needs to showcase a specific
    // credential source, show users how to do that explicitly.
    GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream("/path/to/credentials.json"));
-{{< /tab >}}
+  {{< /tab >}}
+  {{< tab header="Node.js" >}}
+    // Most clients use ADC by default. However, if your application needs to showcase a specific
+    // credential source, show users how to do that explicitly.
+    const keyFile = '/path/to/credentials.json';
+    const auth = new GoogleAuth({
+      keyFile: keyFile,
+      scopes: 'https://www.googleapis.com/auth/cloud-platform',
+    });
+  {{< /tab >}}
 {{< /tabpane >}}
  
 [ADC]: (https://cloud.google.com/docs/authentication/production)
