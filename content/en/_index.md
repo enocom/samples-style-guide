@@ -421,7 +421,7 @@ developer should do.
     }
   {{< /tab >}}
   {{< tab header="Node.js" >}}
-    // Unhandled exceptions will cause Node.js to crash. Print exception
+    // Unhandled exceptions will cause Node.js to crash. Log exception
     // messages via console.error(), and handle any non-fatal exceptions.
     try {
       // Do something
