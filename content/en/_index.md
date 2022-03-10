@@ -100,7 +100,6 @@ the sample work:
    *
    * See https://cloud.google.com/compute/docs/quickstart-client-libraries before running the code snippet.
    */
-   const movePersistentDisk = (...) => { ... }
  {{< /tab >}}
 {{< /tabpane >}}
 
@@ -218,7 +217,6 @@ The samples below show this in action. Note that you do **not** need to copy the
 
     // Lists the types of sensitive information the DLP API supports.
     async function listInfoTypes() {
-      // ---------------- ARRANGE ----------------
       // Only return infoTypes supported by certain parts of the API.
       // Supported filters are:
       //   "supported_by=INSPECT"
@@ -229,14 +227,12 @@ The samples below show this in action. Note that you do **not** need to copy the
       // Defaults to "en_US"
       languageCode = 'en-us';
 
-      // ------------------ ACT ------------------
       // Perform the API request.
       const [response] = await dlp.listInfoTypes({
         languageCode,
         filter
       });
 
-      // ----------------- ASSERT -----------------
       // Parse the response and process the results.
       const infoTypes = response.infoTypes;
       console.log('Info types:');
@@ -283,14 +279,10 @@ possible, provide a link to documentation that enumartes the options.
   {{< /tab >}}
   {{< tab header="Node.js" >}}
     function main() {
-      // Describe what arg1 does
-      const arg1 = ...
-
-      // Describe what arg2 does
-      const arg2 = ...
-      ...
-
-      exampleSnippet(arg1, arg2, ...);
+      // TODO(developer): Replace these variables before running the sample.
+      const projectId = "my-project-id";
+      const filePath = "path/to/image.png";
+      exampleSnippet(arg1, arg2);
     }
   {{< /tab >}}
 {{< /tabpane >}}
@@ -341,12 +333,7 @@ ensure that it works.
   {{< tab header="Node.js" >}}
     const exampleSnippet = (projectId, filePath) => {
       const result = `${projectId}/${filePath}`;
-
-      // Do this...
       console.log('Result:', result);
-
-      // ...NOT this!
-      return result;
     }
   {{< /tab >}}
 {{< /tabpane >}}
@@ -400,6 +387,7 @@ requests or if they are thread-safe).
     const DLP = require('@google-cloud/dlp');
 
     // Instantiates a reusable client object
+    // (Node.js will autom)
     const dlp = new DLP.DlpServiceClient();
   {{< /tab >}}
 {{< /tabpane >}}
