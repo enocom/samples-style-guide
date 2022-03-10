@@ -74,7 +74,7 @@ samples should be structured as such unless their is a compelling reason not to.
   const resource = require('@google-cloud/example');
  
   const exampleSnippet = () => {
-      // Snippet Content ...
+      // Snippet content ...
   }
   // [END product_example]
  {{< /tab >}}
@@ -135,22 +135,28 @@ attributes to the console.
     }
   {{< /tab >}}
   {{< tab header="Node.js" >}}
-    // Required values are passed as arguments to the main() function.
-    // Example declarations are included (but commented out) in the snippet.
-    function main(projectId, filePath) {
-      // [START example_snippet]
-      // TODO(developer): uncomment these variables and replace their values.
-      // const projectId = 'my-project';
-      // const filepath = 'path/to/image.png';
-      function exampleSnippet() {
-        // Snippet content...
-      }
-      // [END example_snippet]
-      exampleSnippet()
+    // Required snippet arguments are declared within `main()`.
+    // [START example_snippet]
+    function main() {
+      // TODO(developer): replace these values before running the sample.
+      const projectId = 'my-project';
+      const filepath = 'path/to/image.png';
+
+      exampleSnippet(projectId, filepath);
     }
 
-    // Run the main function with command-line arguments
-    main(...process.argv.slice(2));
+    const exampleSnippet = (projectId, filepath) => {
+      // Snippet content...
+    }
+    
+    if (require.main === module) {
+      // Run the snippet
+      main();
+    }
+    // [END example_snippet]
+
+    // Export the snippet (for testing purposes)
+    exports.exampleSnippet = exampleSnippet;
   {{< /tab >}}
 {{< /tabpane >}}
 
@@ -167,6 +173,9 @@ more approachable to beginners:
 1. **Assert** - Verify that the call was successful and that a response was
  return as expected. This is typically done by printing some aspects of the
  response to stdout.
+
+The samples below show this in action. Note that you do **not** need to copy the 
+`ARRANGE`, `ACT`, or `ASSERT` comments into your own samples.
 
 {{< tabpane langEqualsHeader=true >}}
  {{< tab header="Java" >}}
@@ -273,16 +282,16 @@ possible, provide a link to documentation that enumartes the options.
     }
   {{< /tab >}}
   {{< tab header="Node.js" >}}
-    function main(arg1, arg2, ...) {
-      // const arg1 = ...
-      // const arg2 = ...
-      function exampleSnippet() {
-        // Declare snippet WITHIN the main() function
-        // Snippet content ...
-      }
+    function main() {
+      // Describe what arg1 does
+      const arg1 = ...
+
+      // Describe what arg2 does
+      const arg2 = ...
+      ...
+
+      exampleSnippet(arg1, arg2, ...);
     }
-    // Run main() with command-line arguments
-    main(...process.argv.slice(2));
   {{< /tab >}}
 {{< /tabpane >}}
 
@@ -303,15 +312,14 @@ a file or a specific action is not.
   {{< /tab >}}
   {{< tab header="Node.js" >}}
     function main(requiredArg) {
-      // This argument is required, and should be added to main()
-      // const requiredArg = '...'
+      // This argument is required, and should be declared
+      const requiredArg = '...';
 
-      // This argument is optional; DO NOT add it to main()
-      // const optionalArg = '...'
+      exampleSnippet(requiredArg)
+    }
 
-      function exampleSnippet() {
-        // Snippet content...
-      }
+    const exampleSnippet = (requiredArg) => {
+      // Snippet content...
     }
   {{< /tab >}}
 {{< /tabpane >}}
@@ -331,14 +339,14 @@ ensure that it works.
     }
   {{< /tab >}}
   {{< tab header="Node.js" >}}
-    function exampleSnippet(projectId, filePath) {
-        const result = `${projectId}/${filePath}`;
+    const exampleSnippet = (projectId, filePath) => {
+      const result = `${projectId}/${filePath}`;
 
-        // Do this...
-        console.log('Result:', result);
+      // Do this...
+      console.log('Result:', result);
 
-        // ...NOT this!
-        return result;
+      // ...NOT this!
+      return result;
     }
   {{< /tab >}}
 {{< /tabpane >}}
