@@ -332,8 +332,8 @@ ensure that it works.
   {{< /tab >}}
   {{< tab header="Node.js" >}}
     const exampleSnippet = (projectId, filePath) => {
-      const result = `${projectId}/${filePath}`;
-      console.log('Result:', result);
+      // Snippet content ...
+      // (This snippet should not `return` anything.)
     }
   {{< /tab >}}
 {{< /tabpane >}}
