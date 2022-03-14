@@ -413,7 +413,7 @@ developer should do.
 
 {{< tabpane langEqualsHeader=true >}}
   {{< tab header="Java" >}}
-    // Follow the Google Java style guide and catch the most specific type of Exception, instead of a more general one.
+    // Always catch the most specific type of Exception, instead of a more general one.
     try {
       // Do something
     } catch (IllegalArgumentException ok) {
