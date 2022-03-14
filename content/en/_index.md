@@ -135,24 +135,24 @@ attributes to the console.
   {{< /tab >}}
   {{< tab header="Node.js" >}}
     // Required snippet arguments are declared within `main()`.
-    // [START example_snippet]
     function main() {
+      // [START example_snippet]
       // TODO(developer): replace these values before running the sample.
       const projectId = 'my-project';
       const filepath = 'path/to/image.png';
 
-      exampleSnippet(projectId, filepath);
-    }
+      const exampleSnippet = (projectId, filepath) => {
+        // Snippet content...
+      }
 
-    const exampleSnippet = (projectId, filepath) => {
-      // Snippet content...
+      exampleSnippet(projectId, filepath);
+      // [END example_snippet]
     }
     
     if (require.main === module) {
       // Run the snippet
       main();
     }
-    // [END example_snippet]
 
     // Export the snippet (for testing purposes)
     exports.exampleSnippet = exampleSnippet;
