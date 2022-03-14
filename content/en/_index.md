@@ -386,8 +386,8 @@ requests or if they are thread-safe).
     // Imports the Google Cloud Data Loss Prevention library
     const DLP = require('@google-cloud/dlp');
 
-    // Instantiates a reusable client object
-    // (Node.js will autom)
+    // Instantiates a reusable client object in the global scope.
+    // (Node.js will automatically clean it up when the script terminates.)
     const dlp = new DLP.DlpServiceClient();
   {{< /tab >}}
 {{< /tabpane >}}
