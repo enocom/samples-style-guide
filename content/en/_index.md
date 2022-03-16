@@ -98,9 +98,9 @@ the sample work:
 {{< /tab >}}
 {{< /tabpane >}}
 
-### Main runner
+### Easy run function
 
-Any declared function arguments should include a no-arg, main method with
+Any declared function arguments should include a no-arg function or method with
 examples for how the user can initialize the method arguments and call the
 entrypoint for the snippet. If the values for these variables need to be
 replaced by the user, be explicit that they are example values only. Wherever
@@ -145,7 +145,14 @@ ensure that it works.
 {{< tab header="Java" >}}
 // This is an example snippet for showing best practices.
 public static void exampleSnippet(String projectId, String filePath) {
-    // Snippet content ...
+    // ... rest of the function here
+
+    // Parse the response and process the results
+    System.out.println("Infotypes found:");
+    for (InfoTypeDescription infoTypeDescription : response.getInfoTypesList()) {
+      System.out.println("Name : " + infoTypeDescription.getName());
+      System.out.println("Display name : " + infoTypeDescription.getDisplayName());
+    }
 }
 {{< /tab >}}
 {{< /tabpane >}}
