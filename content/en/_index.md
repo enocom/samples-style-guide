@@ -73,7 +73,7 @@ samples should be structured as such unless their is a compelling reason not to.
   // [START product_example]
   const resource = require('@google-cloud/example');
  
-  const exampleSnippet = () => {
+  const exampleSnippet = function() {
       // Snippet content ...
   }
   // [END product_example]
@@ -141,7 +141,7 @@ attributes to the console.
       const projectId = 'my-project';
       const filepath = 'path/to/image.png';
 
-      const exampleSnippet = (projectId, filepath) => {
+      const exampleSnippet = function(projectId, filepath) {
         // Snippet content...
       }
 
@@ -310,7 +310,7 @@ a file or a specific action is not.
       exampleSnippet(requiredArg)
     }
 
-    const exampleSnippet = (requiredArg) => {
+    const exampleSnippet = function(requiredArg) {
       // Snippet content...
     }
   {{< /tab >}}
@@ -331,7 +331,7 @@ ensure that it works.
     }
   {{< /tab >}}
   {{< tab header="Node.js" >}}
-    const exampleSnippet = (projectId, filePath) => {
+    const exampleSnippet = function(projectId, filePath) {
       // Snippet content ...
       // (This snippet should not `return` anything.)
     }
